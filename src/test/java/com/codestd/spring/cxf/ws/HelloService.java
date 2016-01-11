@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codestd.spring.cxf.bean;
+package com.codestd.spring.cxf.ws;
 
-import org.springframework.stereotype.Component;
+import javax.jws.WebService;
 
 /**
- * @author jaune(WangChengwei)
+ * 
+ * @author jaune(Wang Chengwei)
  * @since 1.0.0
  */
-public class B {
+@WebService
+public interface HelloService {
 
+	public String syHi(String name);
 }

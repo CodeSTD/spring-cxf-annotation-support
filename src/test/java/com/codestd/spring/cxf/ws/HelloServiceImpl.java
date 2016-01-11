@@ -13,14 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codestd.spring.cxf.bean;
+package com.codestd.spring.cxf.ws;
 
-import org.springframework.stereotype.Component;
+import javax.jws.WebService;
+
+import com.codestd.spring.cxf.annotation.Endpoint;
 
 /**
- * @author jaune(WangChengwei)
+ * @author jaune(Wang Chengwei)
  * @since 1.0.0
  */
-public class B {
+@Endpoint(address="/HelloService", id = "HelloServiceEndpoint")
+@WebService(endpointInterface="com.codestd.spring.cxf.ws.HelloService")
+public class HelloServiceImpl implements HelloService{
+
+	@Override
+	public String syHi(String name) {
+		return "Hello "+name;
+	}
 
 }

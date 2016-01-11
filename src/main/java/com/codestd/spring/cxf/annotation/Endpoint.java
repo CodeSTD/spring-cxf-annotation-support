@@ -15,22 +15,31 @@
  */
 package com.codestd.spring.cxf.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
- * ÓÃÓÚ±©Â¶WebService·şÎñ£¬Í¨¹ıÔÚÀàÉÏ¼ÓÈë{@code @Endpoint}×¢½âÊµÏÖ·şÎñ±©Â¶µÄÄ¿µÄ¡£
- * <p>Ê¹ÓÃ´Ë×¢½âµÄÇ°ÌáÊÇBeanÒÑ¾­¼ÓÈëSpringÈİÆ÷¡£Ò²¾ÍÊÇËµBeanÔÚSpringÅäÖÃÎÄ¼şÖĞÅäÖÃ£¬»òÒÑ±ê×¢@Service¡¢@Component¡¢@InjectµÈ×¢½â¡£
+ * ç”¨äºæš´éœ²WebServiceæœåŠ¡ï¼Œé€šè¿‡åœ¨ç±»ä¸ŠåŠ å…¥{@code @Endpoint}æ³¨è§£å®ç°æœåŠ¡æš´éœ²çš„ç›®çš„ã€‚
+ * <p>ä½¿ç”¨æ­¤æ³¨è§£çš„å‰ææ˜¯Beanå·²ç»åŠ å…¥Springå®¹å™¨ã€‚ä¹Ÿå°±æ˜¯è¯´Beanåœ¨Springé…ç½®æ–‡ä»¶ä¸­é…ç½®ï¼Œæˆ–å·²æ ‡æ³¨@Serviceã€@Componentã€@Injectç­‰æ³¨è§£ã€‚
  * @author jaune(WangChengwei)
  * @since 1.0.0
  */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface Endpoint {
 	
 	/**
-	 * ´ËEndpointÔÚSpringÈİÆ÷ÖĞµÄID
+	 * æ­¤Endpointåœ¨Springå®¹å™¨ä¸­çš„ID
 	 * @return
 	 */
 	String id();
 	
 	/**
-	 * ·şÎñ·¢²¼µÄµØÖ·£¬Ó¦ÉñÂÔ·şÎñÆ÷µØÖ·¼°¶Ë¿ÚºÅºÍÏîÄ¿Â·¾¶
+	 * æœåŠ¡å‘å¸ƒçš„åœ°å€ï¼Œåº”ç¥ç•¥æœåŠ¡å™¨åœ°å€åŠç«¯å£å·å’Œé¡¹ç›®è·¯å¾„
 	 * @return
 	 */
 	String address();
