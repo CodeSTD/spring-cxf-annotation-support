@@ -24,8 +24,8 @@ import org.w3c.dom.Element;
 
 /**
  * 
- * @author clwang
- *
+ * @author jaune(Wang Chengwei)
+ * @since 1.0.0
  */
 public class AnnotationBeanDefinitionParser implements BeanDefinitionParser {
 	

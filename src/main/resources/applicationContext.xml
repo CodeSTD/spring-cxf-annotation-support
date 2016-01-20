@@ -18,6 +18,9 @@
 		http://cxf.apache.org/schemas/jaxws.xsd
 		http://www.codestd.com/schema/std/ws
 		http://www.codestd.com/schema/std/ws/stdws-1.0.xsd">
+	
+	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
 		
 	<context:annotation-config />
 	<context:component-scan base-package="com.codestd.spring.cxf" />

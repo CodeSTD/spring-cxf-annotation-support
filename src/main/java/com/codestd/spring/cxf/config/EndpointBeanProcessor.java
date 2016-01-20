@@ -21,25 +21,20 @@ import org.apache.cxf.bus.spring.Jsr250BeanPostProcessor;
 import org.apache.cxf.common.injection.NoJSR250Annotations;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
-import org.springframework.core.Ordered;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.w3c.dom.Element;
 
 import com.codestd.spring.cxf.annotation.Endpoint;
 
@@ -58,6 +53,8 @@ public class EndpointBeanProcessor implements
 	
 	private String[] annotationPackages;
 	
+	private BeanRegistry beanRegistry;
+	
 	public void setAnnotationPackage(String annotationPackage) {
 		this.annotationPackage = annotationPackage;
 		if(!StringUtils.isEmpty(this.annotationPackage))
@@ -68,6 +65,7 @@ public class EndpointBeanProcessor implements
 	public void setApplicationContext(ApplicationContext applicationContext)
 			throws BeansException {
 		this.applicationContext = applicationContext;
+		this.beanRegistry = new BeanRegistry(this.applicationContext);
 	}
 
 	@Override
@@ -77,10 +75,19 @@ public class EndpointBeanProcessor implements
 		if(!this.isMatchPackage(bean))return bean;
 		
 		Endpoint endpoint = bean.getClass().getAnnotation(Endpoint.class);
-		
 		if(endpoint != null){
-			String id = endpoint.id();
-			
+		    /*JaxWsServerFactoryBean factory = new JaxWsServerFactoryBean();  
+		    factory.setAddress("http://localhost:8080/"+endpoint.address());
+		    
+		    factory.setServiceClass(Class.forName(webService.endpointInterface()));
+		    factory.setServiceBean(bean);  
+		    factory.create();*/
+			//SpringEndpointImpl springEndpoint = new SpringEndpointImpl(bean);
+			//RootBeanDefinition beanDefinition = new RootBeanDefinition();
+			//beanDefinition.setBeanClass(SpringEndpointImpl.class);
+			//beanDefinition
+			BeanDefinition beanDefinition = this.beanRegistry.register(SpringEndpointImpl.class);
+			//beanDefinition.getPropertyValues()
 		}
 		
 		return bean;

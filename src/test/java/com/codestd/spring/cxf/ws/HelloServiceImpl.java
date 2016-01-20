@@ -23,7 +23,7 @@ import com.codestd.spring.cxf.annotation.Endpoint;
  * @author jaune(Wang Chengwei)
  * @since 1.0.0
  */
-@Endpoint(address="/HelloService", id = "HelloServiceEndpoint")
+@Endpoint(address="HelloService", id = "HelloServiceEndpoint")
 @WebService(endpointInterface="com.codestd.spring.cxf.ws.HelloService")
 public class HelloServiceImpl implements HelloService{
 
